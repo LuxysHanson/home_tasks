@@ -181,7 +181,7 @@ function power($val, $pow)
         case 0:
             return 1;
         case $pow < 0:
-            return $val == 0 ? "Нельзя делить на 0" : 1/$val;
+            return power(1/$val, -$pow);
         default:
             return $val * power($val, --$pow);
     }
