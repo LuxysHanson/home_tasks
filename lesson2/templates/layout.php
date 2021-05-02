@@ -8,6 +8,7 @@
     <title>layout page</title>
 </head>
 <body>
-    <?= $content ?>
+    <?= $about ?>
+    <?= $contact ?>
 </body>
 </html>

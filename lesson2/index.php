@@ -1,8 +1,5 @@
 <?php
 
-use Cassandra\Exception\DivideByZeroException;
-
-
 // task1
 
 echo "<h3>Задание №1</h3>";
@@ -10,9 +7,9 @@ echo "<h3>Задание №1</h3>";
 $a = rand(-10, 10);
 $b = rand(-10, 10);
 
-echo "Переменные: а=$a, b=$b <br>";
+echo "Переменные: а={$a}, b={$b} <br>";
 
-if ($a > 0 && $b > 0) {
+if ($a >= 0 && $b >= 0) {
     echo "Разность: ". ($a - $b);
 } elseif ($a < 0 && $b < 0) {
     echo "Произведение: ". ($a * $b);
@@ -31,23 +28,56 @@ $str = "";
 
 echo "Переменная а=$a <br>";
 
+/* Вариант без рекурсии */
+
+echo "Результат(вариант без рекурсии): <br>";
+
+switch ($a) {
+    case 1:
+        echo "1<br>";
+    case 2:
+        echo "2<br>";
+    case 3:
+        echo "3<br>";
+    case 4:
+        echo "4<br>";
+    case 5:
+        echo "5<br>";
+    case 6:
+        echo "6<br>";
+    case 7:
+        echo "7<br>";
+    case 8:
+        echo "8<br>";
+    case 9:
+        echo "9<br>";
+    case 10:
+        echo "10<br>";
+    case 11:
+        echo "11<br>";
+    case 12:
+        echo "12<br>";
+    case 13:
+        echo "13<br>";
+    case 14:
+        echo "14<br>";
+    case 15:
+        echo "15<br>";
+}
+
 /* Вариант с рекурсией */
 
 function getValueToMax($value, &$str)
 {
-    if ($value >= MAX_SIZE) {
-        if (empty($str)) {
-            $str = "между переменной a и " . MAX_SIZE . " нет целочисленных чисел";
-        }
-
-        return 0;
+    if ($value > MAX_SIZE) {
+        return empty($str) ? "между переменной a и " . MAX_SIZE . " нет целочисленных чисел" : 0;
     }
 
     $str .= $value++ . " ";
     return getValueToMax($value, $str);
 }
 
-getValueToMax(++$a, $str);
+getValueToMax($a, $str);
 
 echo "Результат(вариант с рекурсией): " . $str;
 
@@ -78,11 +108,7 @@ function multi($a, $b)
 
 function div($a, $b)
 {
-    if ($b == 0) {
-//        throw new DivideByZeroException("Нельзя делить на 0");
-        return "Нельзя делить на 0";
-    }
-    return round($a / $b, 2);
+    return $b == 0 ? "Нельзя делить на 0" : $a / $b;
 }
 
 echo "Результат сложения: " . add($a, $b) . "<br>";
@@ -113,6 +139,8 @@ function mathOperation($arg1, $arg2, $operation)
         case '/':
             $result = div($arg1, $arg2);
             break;
+        default:
+            $result = "Неверная операция!";
     }
     return $result;
 }
@@ -127,20 +155,15 @@ echo "Результат деления: " . mathOperation($a, $b, '/') . "<br>"
 
 echo "<h3>Задание №5</h3>";
 
-function renderTemplate($url, $content = '')
+function renderTemplate($url, $about = '', $contact = '')
 {
     ob_start();
     include "$url.php";
-    if ($content) {
-        var_dump(ob_get_clean());
-        return null;
-    }
     return ob_get_clean();
 }
 $aboutPage = renderTemplate("templates/about");
 $contactPage = renderTemplate("templates/contact");
-$content = $aboutPage . "<br>" . $contactPage;
-echo renderTemplate("templates/layout", $content);
+echo renderTemplate("templates/layout", $aboutPage, $contactPage);
 
 
 // task 6
@@ -154,8 +177,14 @@ echo "Переменные: а=$a, b=$b <br>";
 
 function power($val, $pow)
 {
-    if ($pow == 0 || $pow < 0) return 1;
-    return $val * power($val, --$pow);
+    switch ($pow) {
+        case 0:
+            return 1;
+        case $pow < 0:
+            return $val == 0 ? "Нельзя делить на 0" : 1/$val;
+        default:
+            return $val * power($val, --$pow);
+    }
 }
 echo "Результат возведения: " . power($a,$b);
 
@@ -164,25 +193,37 @@ echo "Результат возведения: " . power($a,$b);
 
 echo "<h3>Задание №7</h3>";
 
-function multiplier($value, $words = array())
+function multiplier($value, $word1, $word2, $word3)
 {
-    if ($value % 10 == 1 && ($value<10 || $value>20)) {
-        return $value . $words[0];
-    } else if ($value % 10 > 1 && $value % 10 < 5 && ($value<10 || $value>20)) {
-        return $value . $words[1];
-    } else {
-        return $value . $words[2];
+    $module = $value % 10;
+    switch ($value) {
+        case $module == 1 && ($value<10 || $value>20):
+            return $value . $word1;
+        case $module > 1 && $module < 5 && ($value<10 || $value>20):
+            return $value . $word2;
+        default:
+            return $value . $word3;
+    }
+}
+
+echo multiplier(date('H'), 'час', 'часа', 'часов');
+
+function multiplier2($value, $words = array())
+{
+    $module = $value % 10;
+    switch ($value) {
+        case $module == 1 && ($value<10 || $value>20):
+            return $value . $words[0];
+        case $module > 1 && $module < 5 && ($value<10 || $value>20):
+            return $value . $words[1];
+        default:
+            return $value . $words[2];
     }
 }
 
 //22 часа 15 минут
 //21 час 43 минуты
-echo multiplier(date('H'), [
-    'час',
-    'часа',
-    'часов'
-]);
-echo multiplier(date('i'), [
+echo multiplier2(date('i'), [
     'минута',
     'минуты',
     'минут'
