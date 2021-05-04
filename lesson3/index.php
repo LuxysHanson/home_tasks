@@ -9,9 +9,7 @@ const MAX_SIZE = 100;
 
 while ($i <= MAX_SIZE) {
 
-    if ($i > MAX_SIZE) break;
-
-    if ($i % 3 == 0) {
+    if ($i % 3 === 0) {
         echo $i . " ";
     }
 
@@ -28,13 +26,11 @@ const MAX_SIZE_TASK2 = 10;
 
 do {
 
-    if ($i > MAX_SIZE_TASK2) break;
-
     switch ($i) {
         case 0:
             echo $i++ . " - ноль<br>";
             break;
-        case $i % 2 == 0:
+        case !($i & 1):
             echo $i++ . " - четное число<br>";
             break;
         default:
@@ -96,7 +92,7 @@ function translate($text){
         'ь' => '\'',  'ы' => 'y',   'ъ' => '\'',
         'э' => 'e',   'ю' => 'yu',  'я' => 'ya'
     ];
-    $arr = preg_split('//u', $text, -1, PREG_SPLIT_NO_EMPTY);
+    $arr = preg_split('//u', mb_strtolower($text), -1, PREG_SPLIT_NO_EMPTY);
     $text = '';
     foreach($arr as $val) {
         $text .= (isset($alphabet[$val])) ? $alphabet[$val] : $val;
