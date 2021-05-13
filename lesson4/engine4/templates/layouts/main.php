@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="../public/css/style.css">
     <?=$styles?>
 </head>
-<body>
+<body class="<?= $body_class ?>">
     <?=$menu?>
     <?=$content?>
 

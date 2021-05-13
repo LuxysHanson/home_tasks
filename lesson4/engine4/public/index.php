@@ -13,7 +13,9 @@ if (isset($_GET['page'])) {
 
 //Для каждой страницы готовим массив со своим набором переменных
 //для подстановки их в соотвествующий шаблон
-$params = [];
+$params = [
+    'body_class' => ''
+];
 switch ($page) {
 
     case 'index':
@@ -30,6 +32,8 @@ switch ($page) {
         break;
 
     case 'gallery':
+        $params['title'] = "Моя галлерея";
+        $params['body_class'] = "gallery-page";
         $params['galleries'] = getGalleries();
         break;
 
