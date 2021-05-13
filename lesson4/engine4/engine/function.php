@@ -6,6 +6,7 @@ function render($page, $params = []) {
         'content' => renderTemplate($page, $params),
         'styles' => renderTemplate('styles', $params),
         'scripts' => renderTemplate('scripts', $params),
+        'body_class' => $params['body_class']
     ]);
 }
 

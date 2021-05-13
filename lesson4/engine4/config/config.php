@@ -1,7 +1,7 @@
 <?php
 define('TEMPLATES_DIR', '../templates/');
 define('LAYOUTS_DIR', 'layouts/');
-define('GALLERY_FILE_DIR', "../../gallery_files/");
+define('GALLERY_FILE_DIR', "../public/");
 
 include "../engine/function.php";
 include "../engine/files.php";
