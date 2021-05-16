@@ -11,7 +11,7 @@ use common\models\Galleries; ?>
 <head>
     <meta charset="UTF-8">
     <title>Моя галерея - <?= $title ?></title>
-    <link rel="stylesheet" href="<?= "src/style.css" ?>"/>
+    <link rel="stylesheet" href="<?= STYLE_DIR ?>"/>
 </head>
 <body>
 <div id="main">
