@@ -24,7 +24,7 @@ class Query
     public function executeSqlQuery(string $sql)
     {
         $conn = $this->getDbConnect();
-        $conn->prepare($sql)->execute();
+        $this->execute($conn->prepare($sql));
     }
 
     public function getModelClass()
