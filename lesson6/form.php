@@ -32,5 +32,6 @@ function mathOperation($arg1, $arg2, $operation)
     return "Нет такой функции для обработки данных!";
 }
 
-$result = mathOperation($value1, $value2, 'add');
-return $result;
+$result = mathOperation($value1, $value2, $operation);
+echo json_encode(array( 'result' => $result ));
+return;
