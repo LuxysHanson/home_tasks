@@ -21,7 +21,7 @@
 
         <? if ($products) : ?>
             <? foreach ($products as $product) : ?>
-                <?= include "product.php" ?>
+                <?php include "product.php" ?>
             <? endforeach; ?>
         <? else: ?>
             <div class="text-danger">Список пуст</div>
