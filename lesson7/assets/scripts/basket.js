@@ -22,7 +22,7 @@ window.onload = function () {
                 var data = "id=" + productId + "&count=" + productCount;
 
                 this.disabled = true;
-                sendingRequest( 'controllers/buy.php', data)
+                sendingRequest( 'api/buy.php', data)
                     .then(data => {
                         if (data.result === "ok") {
                             var total = document.getElementById('total_count'),
@@ -56,7 +56,7 @@ window.onload = function () {
                     data = "id=" + basketId + "&count=" + count + "&diff_count=" + diffCount;
 
                 this.disabled = true;
-                sendingRequest( 'controllers/delete.php', data)
+                sendingRequest( 'api/delete.php', data)
                     .then(data => {
                         if (data.result === "ok") {
                             var total = document.getElementById('total_count'),
