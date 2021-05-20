@@ -1,0 +1,11 @@
+.d-none {
+    display: none;
+}
+
+nav, form {
+    margin-bottom: 30px;
+}
+
+.text-danger {
+    color: red;
+}
