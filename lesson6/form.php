@@ -34,4 +34,4 @@ function mathOperation($arg1, $arg2, $operation)
 
 $result = mathOperation($value1, $value2, $operation);
 echo json_encode(array( 'result' => $result ));
-return;
+die();
