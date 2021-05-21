@@ -5,7 +5,6 @@
  */
 
 const IMG_DIR = "\assets\gallery_img\small\\";
-$id = (int)$_GET['id'];
 ?>
 
 <article id="product_<?= $product['id'] ?>">

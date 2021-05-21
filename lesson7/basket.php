@@ -17,7 +17,7 @@ $products = getAllByQuery("SELECT p.*, b.*, g.name as image FROM basket b LEFT J
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Корзина товаров</title>
-    <link rel="stylesheet" href="assets/style.css">
+    <link rel="stylesheet" href="/assets/style.css">
 </head>
 <body>
 
@@ -39,6 +39,6 @@ $products = getAllByQuery("SELECT p.*, b.*, g.name as image FROM basket b LEFT J
 
     </div>
 
-    <script src="assets/scripts/basket.js"></script>
+    <script src="/assets/scripts/basket.js"></script>
 </body>
 </html>
