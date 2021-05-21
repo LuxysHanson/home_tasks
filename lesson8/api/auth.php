@@ -1,6 +1,7 @@
 <?php
 
 require __DIR__ . "\..\models\db.php";
+require __DIR__ . "\..\models\api.php";
 require __DIR__ . "\..\models\auth.php";
 
 header( 'Content-Type:application/json');
@@ -28,9 +29,12 @@ if (!$login || !$password) {
     sendReply($errors);
 }
 
-$user = getOneByQuery("SELECT * FROM users WHERE login = '". trim(strip_tags($login)) ."'");
-if ($user AND password_verify($password, $user['password_hash'])) {
 
+if (login($login, $password)) {
+    sendReply([
+        'result' => 'ok',
+        'key' => secretKeyForUser()
+    ]);
 }
 
 $errors['errors']['password'] = "Неправильно логин или пароль";

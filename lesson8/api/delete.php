@@ -2,6 +2,7 @@
 
 require __DIR__ . "\..\models\db.php";
 require __DIR__ . "\..\models\auth.php";
+require __DIR__ . "\..\models\api.php";
 
 $basketId = (int) $_POST['id'];
 $productCount = (int) $_POST['count'];
@@ -17,5 +18,4 @@ if ($differenceCount > 0) {
 }
 
 
-echo json_encode(array( 'result' => 'ok' ));
-return;
+sendReply(array( 'result' => 'ok' ));

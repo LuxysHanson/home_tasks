@@ -5,7 +5,7 @@ function getDb()
     static $db = null;
 
     if (!$db) {
-        require_once( $_SERVER['DOCUMENT_ROOT'] . "/config.php");
+        require_once( $_SERVER['DOCUMENT_ROOT'] . "/config/db.php");
 
         try {
             /** @var $database array */

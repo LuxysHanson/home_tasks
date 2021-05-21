@@ -1,40 +1,47 @@
 <?php
 
+require_once("generate.php");
+
 function getSessionId()
 {
     session_start();
     return session_id();
 }
 
-function sendReply(array $send)
+function login($login, $password)
 {
-    echo json_encode($send);
-    die();
+    $user = getOneByQuery("SELECT * FROM users WHERE login = '". trim(strip_tags($login)) ."'");
+
+    if ($user AND password_verify($password, $user['password_hash'])) {
+        session_start();
+        $_SESSION['user_id'] = $user['id'];
+        return true;
+    }
+
+    return false;
 }
 
-function login()
+function isGuest()
 {
-
-}
-
-function getTotalCountProducts($total)
-{
-    $count = 0;
-    if (!empty($total)) {
-        foreach ($total as $item) {
-            $count += $item['count'];
+    if (!isset($_SESSION['user_id']) and isset($_COOKIE['auth'])) {
+        $user = getOneByQuery("SELECT * FROM users WHERE verify_key = '". $_COOKIE['auth'] ."'");
+        if ($user) {
+            $_SESSION['user_id'] = $user['id'];
         }
     }
-    return $count;
+
+    return !isset($_SESSION['user_id']);
 }
 
-function getTotalAmountOrder($total)
+function secretKeyForUser()
 {
-    $count = 0;
-    if (!empty($total)) {
-        foreach ($total as $item) {
-            $count += $item['price'] * $item['total_count'];
-        }
+    if (isset($_SESSION['user_id'])) {
+        $secretKey = generateSecretKey();
+        executeSqlQuery("UPDATE users SET verify_key = :verify_key WHERE id = :id", [
+            'id' => $_SESSION['user_id'],
+            'verify_key' => $secretKey
+        ]);
+        return $secretKey;
     }
-    return $count;
+    return '';
 }

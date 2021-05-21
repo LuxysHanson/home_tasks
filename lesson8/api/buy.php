@@ -2,6 +2,7 @@
 
 require __DIR__ . "\..\models\db.php";
 require __DIR__ . "\..\models\auth.php";
+require __DIR__ . "\..\models\api.php";
 
 $productId = (int) $_POST['id'];
 $productCount = (int) $_POST['count'];
@@ -24,5 +25,4 @@ if ($product) {
 }
 
 
-echo json_encode(array( 'result' => 'ok' ));
-return;
+sendReply(array( 'result' => 'ok' ));

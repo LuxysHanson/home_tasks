@@ -15,7 +15,7 @@ window.onload = function () {
         }
 
         (async () => {
-            const response = await fetch('controllers/auth.php', {
+            const response = await fetch('api/auth.php', {
                 method: 'POST',
                 body: formData
             });
@@ -37,6 +37,12 @@ window.onload = function () {
                         removeAfterItem(elem)
                     }
                 }
+                return 0;
+            }
+
+            if (answer.result) {
+                document.cookie = "auth=" + answer.key + ";max-age=" + 3600 * 2; // на 2 часа
+                window.location.href = "/";
             }
 
         })();
