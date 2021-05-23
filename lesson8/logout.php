@@ -9,5 +9,6 @@ if (isGuest()) {
 
 session_start();
 setcookie('auth', "", strtotime('-2 hours'));
+session_regenerate_id();
 session_destroy();
 header("Location: /");
