@@ -8,6 +8,7 @@ header( 'Content-Type:application/json');
 
 $login = $_POST['login'];
 $password = $_POST['password'];
+$rememberMe = isset($_POST['remember_me']);
 
 $errors = [
     'errors' => [
@@ -33,7 +34,7 @@ if (!$login || !$password) {
 if (login($login, $password)) {
     sendReply([
         'result' => 'ok',
-        'key' => secretKeyForUser()
+        'key' => $rememberMe ? secretKeyForUser() : ''
     ]);
 }
 

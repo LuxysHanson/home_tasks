@@ -1,7 +1,7 @@
 <?php
 /**
  * @var $products array
- * @var $totalCount int
+ * @var $totalSum array
  */
 ?>
 <!doctype html>
@@ -41,7 +41,7 @@
             </article>
         <? endforeach; ?>
         <br>
-        <p>Общая сумма заказа - <span id="basket_count"><?= $totalCount ?></span></p>
+        <p>Общая сумма заказа - <span id="basket_count"><?= getTotalAmountOrder($totalSum) ?></span></p>
     <? else: ?>
         <div class="text-danger">Корзина пуста</div>
     <? endif; ?>

@@ -13,12 +13,18 @@ function login($login, $password)
     $user = getOneByQuery("SELECT * FROM users WHERE login = '". trim(strip_tags($login)) ."'");
 
     if ($user AND password_verify($password, $user['password_hash'])) {
-        session_start();
-        $_SESSION['user_id'] = $user['id'];
+        userAuth($user['id']);
         return true;
     }
 
     return false;
+}
+
+function userAuth($userId)
+{
+    session_start();
+    session_regenerate_id();
+    $_SESSION['user_id'] = $userId;
 }
 
 function isGuest()

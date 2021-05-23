@@ -4,18 +4,20 @@ window.onload = function () {
         if (elem.nextElementSibling) elem.parentNode.removeChild(elem.nextElementSibling)
     }
 
-    document.querySelector('.login-btn').onclick = function () {
+    document.querySelector('.signup-btn').onclick = function () {
         let formData = new FormData(document.querySelector('form')),
             login = document.querySelector('input[name="login"]'),
-            password = document.querySelector('input[name="password"]');
+            password = document.querySelector('input[name="password"]'),
+            confirm_password = document.querySelector('input[name="confirm_password"]');
 
-        if (login.value && password.value) {
+        if (login.value && password.value && confirm_password.value) {
             removeAfterItem(login)
             removeAfterItem(password)
+            removeAfterItem(confirm_password)
         }
 
         (async () => {
-            const response = await fetch('api/auth.php', {
+            const response = await fetch('api/signup.php', {
                 method: 'POST',
                 body: formData
             });
@@ -41,9 +43,6 @@ window.onload = function () {
             }
 
             if (answer.result) {
-                if (answer.key !== '') {
-                    document.cookie = "auth=" + answer.key + ";max-age=" + 3600 * 2; // на 2 часа
-                }
                 window.location.href = "/";
             }
 

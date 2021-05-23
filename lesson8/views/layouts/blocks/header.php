@@ -1,6 +1,5 @@
 <?php
 
-require __DIR__ . "\..\..\..\models\auth.php";
 require __DIR__ . "\..\..\..\models\user.php";
 
 $user = !isGuest() ? getUser() : null;
@@ -11,6 +10,7 @@ $user = !isGuest() ? getUser() : null;
 
     <? if (isGuest()) : ?>
         <a href="login.php">Войти в систему</a>
+        <a href="sign_up.php">Регистрация</a>
     <? else: ?>
         <a href="logout.php">Выход</a>
     <? endif; ?>

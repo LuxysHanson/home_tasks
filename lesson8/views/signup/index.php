@@ -1,3 +1,5 @@
+<?php
+?>
 <!doctype html>
 <html lang="ru">
 <head>
@@ -5,11 +7,11 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Страница авторизации пользователя</title>
+    <title>Страница регистрации</title>
     <link rel="stylesheet" href="/assets/style.css">
 </head>
 <body>
-<div id="auth_login">
+<div id="auth_signup">
     <form>
         <div class="form-group">
             <label for="login">Введите логин</label><br>
@@ -20,13 +22,13 @@
             <input id="password" type="password" name="password" required/>
         </div>
         <div class="form-group">
-            <label for="remember_me">Запомнить меня</label>
-            <input type="checkbox" name="remember_me" id="remember_me"/>
+            <label for="confirm_password">Введите пароль еще раз</label><br>
+            <input id="confirm_password" type="password" name="confirm_password" required/>
         </div>
-        <button class="login-btn" type="button">Войти</button>
+        <button class="signup-btn" type="button">Зарегистрироваться</button>
     </form>
 </div>
 
-<script src="/assets/scripts/login.js"></script>
+<script src="/assets/scripts/signup.js"></script>
 </body>
 </html>
