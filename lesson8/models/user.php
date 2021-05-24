@@ -7,7 +7,17 @@ function getUser()
 
 function getUserId()
 {
-    return $_SESSION['user_id'] ?: -1;
+    return !isGuest() ? $_SESSION['user_id'] : -1;
+}
+
+function isAdmin()
+{
+    static $user = null;
+    if (!$user) {
+        $user = getUser();
+    }
+
+    return !is_null($user) ? $user['role'] == 'admin' : false;
 }
 
 function getUserByLogin($login)
