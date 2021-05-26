@@ -1,0 +1,15 @@
+.d-none {
+    display: none;
+}
+
+nav, form {
+    margin-bottom: 30px;
+}
+
+.text-danger {
+    color: red;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
